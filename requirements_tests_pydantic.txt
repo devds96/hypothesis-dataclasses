@@ -1,0 +1,8 @@
+flake8
+hypothesis
+pybadges
+pydantic
+pytest
+pytest-cov
+tox
+typing_extensions;python_version<"3.11"

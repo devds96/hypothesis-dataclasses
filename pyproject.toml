@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=42.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hypothesis_dataclasses"
+authors = [
+    {name = "devds96", email = "src.devds96@gmail.com"}
+]
+license = {text = "MIT"}
+description = """An extension for hypothesis to easily define composite
+strategies via dataclasses."""
+requires-python = ">=3.7"
+classifiers = [
+    "Framework :: Hypothesis",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Testing",
+    "Typing :: Typed",
+]
+dynamic = [
+    "dependencies",
+    "optional-dependencies",
+    "readme",
+    "version",
+]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+optional-dependencies.tests = { file = ["requirements_tests.txt"] }
+optional-dependencies.tests_pydantic = {file = ["requirements_tests_pydantic.txt"] }
+optional-dependencies.pydantic = { file = ["requirements_pydantic.txt"] }
+readme = {file = ["README.md"]}
+version = {attr = "hypothesis_dataclasses.__version__"}
+
+[tool.pytest.ini_options]
+addopts = "--cov=hypothesis_dataclasses --cov-report term-missing"
+testpaths = [
+    "tests",
+]
+
+[tool.coverage.run]
+branch = true
+source = [
+    "hypothesis_dataclasses",
+]
+relative_files = true
+
+[tool.coverage.report]
+exclude_also = [
+    "@_?overload",
+    "raise AssertionError"
+]
